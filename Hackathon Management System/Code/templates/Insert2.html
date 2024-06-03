@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'HomePage' %}">Hackathon Management System</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'HomePage' %}">Home</a></li>
+            <li><a href="{% url 'showpart' %}">Participant Database</a></li>
+            <li class="active"><a href="{% url 'showhack' %}">Hackathon Database</a></li>
+          </ul>
+        </div>
+    </nav>
+    <center>
+        <h4>Insert Hackathon Details</h4>
+        <form method="POST">
+            <div class="table-wrapper-scroll-y my-custom-scrollbar container">
+                {% csrf_token %}
+                <table border="1" class="table table-bordered table-striped mb-0 table-hover">
+                <tr>
+                    <td>hack_id</td>
+                    <td><input type="text" placeholder="Enter Hackathon id.." name="hack_id"></td>
+                </tr>
+                <tr>
+                    <td>hack_name</td>
+                    <td><input type="text" placeholder="Enter Hackathon name.." name="hack_name"></td>
+                </tr>
+                <tr>
+                    <td>name_type</td>
+                    <td><select name="name_type">
+                        <option selected disabled="True">-- Select Name Type --</option>
+                        <option>Job</option>
+                        <option>Intership</option>
+                        <option>Prize</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>date</td>
+                    <td><input type="date" placeholder="Enter Hackathon date.." name="date"></td>
+                </tr>
+                <tr>
+                    <td>time</td>
+                    <td><input type="time" placeholder="Enter Hackathon time.." name="time"></td>
+                </tr>
+                <tr>
+                    <td>duration</td>
+                    <td><input type="text" placeholder="Enter Hackathon duration.." name="duration"></td>
+                </tr>   
+                    <tr>
+                        <!-- <td><input type="submit" value="Insert"/></td> -->
+                        <td><button type="submit" class="btn btn-info" value="Insert">Submit</button></td>
+                        <td>
+                            {% if messages %}
+                            {% for mess in messages %}
+                            <b style="color: green;">{{mess}}</b>
+                            {% endfor %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <a href="{% url 'showhack' %}" class="btn btn-info" role="button">back</a>
+        </form>
+    </center>
+</body>
+</html>

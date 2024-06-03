@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Hackathon Management App</title>
+    <style>
+        body {
+            margin: 10;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: url("https://images.hdqwalls.com/wallpapers/i-love-coding-xl.jpg");
+            background-color: rgb(104, 20, 84);
+            height: 900px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: static;
+        }
+        .btn{
+            margin-top: 30px;
+        }
+        .container{
+            margin-top: 150px;
+            color: rgb(255, 255, 255);
+        }
+        footer{
+            margin-top: 400px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'HomePage' %}">Hackathon Management System</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'HomePage' %}">Home</a></li>
+                <li><a href="{% url 'showpart' %}">Participant Database</a></li>
+                <li><a href="{% url 'showhack' %}">Hackathon Database</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- <div class="first"> -->
+
+    <center>
+        <h1 style="color:white;">Hackathon Management App</h1>
+        <h3 style="color:blue;">Using Python-Django and PostgreSQL</h3>
+    </center>
+
+    <center>
+        <form action="showHackathon">
+            <input type="submit" value="Hackathon Database" class="btn btn-info">
+        </form>
+
+        <form action="showParticipant">
+            <input type="submit" value="Participant Database" class="btn btn-info">
+        </form>
+    </center>
+    <!-- </div> -->
+
+    <footer>
+        <marquee behavior="scroll" direction="left">
+            <align="bottom">
+                <h4>
+                <p style="color:rgb(0, 255, 51);">
+                    Welcome to Hackathon Management System Home Page!
+                </style>
+                </p>
+                </h4>
+            </align>
+        </marquee>
+    </footer>
+
+</body>
+
+</html>

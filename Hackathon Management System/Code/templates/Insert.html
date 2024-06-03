@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'HomePage' %}">Hackathon Management System</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'HomePage' %}">Home</a></li>
+            <li class="active"><a href="{% url 'showpart' %}">Participant Database</a></li>
+            <li><a href="{% url 'showhack' %}">Hackathon Database</a></li>
+          </ul>
+        </div>
+    </nav>
+    <center>
+        <h4>Insert Participant Details</h4>
+        <!-- <hr> -->
+        <form method="POST">
+            <div class="table-wrapper-scroll-y my-custom-scrollbar container">
+                {% csrf_token %}
+                <table border="1" class="table table-bordered table-striped mb-0 table-hover">
+                    <tr>
+                        <td>part_id</td>
+                        <td><input type="text" placeholder="Enter Participant id.." name="part_id"></td>
+                    </tr>
+                    <tr>
+                        <td>first_name</td>
+                        <td><input type="text" placeholder="Enter Participant First name.." name="first_name"></td>
+                    </tr>
+                    <tr>
+                        <td>last_name</td>
+                        <td><input type="text" placeholder="Participant First name.." name="last_name"></td>
+                    </tr>
+                    <tr>
+                        <td>email_add</td>
+                        <td><input type="text" placeholder="Enter Participant Email Address.." name="email_add"></td>
+                    </tr>
+                    <tr>
+                        <td>dob</td>
+                        <td><input type="date" placeholder="Enter Participant dob.." name="dob"></td>
+                    </tr>
+                    <tr>
+                        <td>student</td>
+                        <td><input type="text" placeholder="Enter Participant student.." name="student"></td>
+                    </tr>
+                    <tr>
+                        <td>college</td>
+                        <td><input type="text" placeholder="Enter Participant college.." name="college"></td>
+                    </tr>
+                    <tr>
+                        <td>cpi</td>
+                        <td><input type="text" placeholder="Enter Participant cpi.." name="cpi"></td>
+                    </tr>
+                    <tr>
+                        <!-- <td><input type="submit" value="Insert"/></td> -->
+                        <td><button type="submit" class="btn btn-info" value="Insert">Submit</button></td>
+                        <td>
+                            {% if messages %}
+                            {% for mess in messages %}
+                            <b style="color: green;">{{mess}}</b>
+                            {% endfor %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <a href="{% url 'showpart' %}" class="btn btn-info" role="button">back</a>
+        </form>
+    </center>
+</body>
+</html>

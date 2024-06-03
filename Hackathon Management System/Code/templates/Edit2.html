@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'HomePage' %}">Hackathon Management System</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'HomePage' %}">Home</a></li>
+            <li><a href="{% url 'showpart' %}">Participant Database</a></li>
+            <li class="active"><a href="{% url 'showhack' %}">Hackathon Database</a></li>
+          </ul>
+        </div>
+    </nav>
+    <center>
+        <h4>Update Record in Hackathon</h4>
+        <form action="/Update2/{{HackathonModel.hack_id}}" method="POST">
+            <div class="table-wrapper-scroll-y my-custom-scrollbar container">
+                {% csrf_token %}
+                <table border="1" class="table table-bordered table-striped mb-0 table-hover">
+                    <tr>
+                        <td>hack_id</td>
+                        <td><input type="text" name="hack_id" value="{{HackathonModel.hack_id}}" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>hack_name</td>
+                        <td><input type="text" name="hack_name" value="{{HackathonModel.hack_name}}"></td>
+                    </tr>
+                    <tr>
+                        <td>name_type</td>
+                        <td><input type="text" name="name_type" value="{{HackathonModel.name_type}}"></td>
+                    </tr>
+                    <tr>
+                        <td>date</td>
+                        <td><input type="date" name="date" value="{{HackathonModel.date}}"></td>
+                    </tr>
+                    <tr>
+                        <td>time</td>
+                        <td><input type="time" name="time" value="{{HackathonModel.time}}"></td>
+                    </tr>
+                    <tr>
+                        <td>duration</td>
+                        <td><input type="text" name="duration" value="{{HackathonModel.duration}}"></td>
+                    </tr>
+                    <tr>
+                        <!-- <td><input type="submit" value="Update Record"></td> -->
+                        <td><button type="submit" class="btn btn-info" value="Update Record">Update</button></td>
+                        <td>
+                            {% if messages %}
+                            {% for mess in messages %}
+                            <b style="color: green;">{{mess}}</b>
+                            {% endfor %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <a href="{% url 'showhack' %}" class="btn btn-info" role="button">back</a>
+        </form>
+    </center>
+</body>
+</html>

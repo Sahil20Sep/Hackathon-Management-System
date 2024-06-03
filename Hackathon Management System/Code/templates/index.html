@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Management System</title>
+    <!-- <style>
+        body {
+            margin: 10;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v462-n-130-textureidea_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&auto=format&ixlib=js-2.2.1&s=fb751b844b04b0e54e5895f144f5ab9d");
+            background-color: rgb(255, 230, 0);
+            height: 500px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: static;
+        }
+        .btn{
+            margin-top: 0px;
+        }
+        .container{
+            margin-top: 25px;
+            color: rgb(1, 48, 255);
+        }
+        footer{
+            margin-top: 400px;
+        }
+    </style> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'HomePage' %}">Hackathon Management System</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'HomePage' %}">Home</a></li>
+            <li class="active"><a href="{% url 'showpart' %}">Participant Database</a></li>
+            <li><a href="{% url 'runQuerypart' %}">Query Output</a></li>
+            <li><a href="{% url 'showhack' %}">Hackathon Database</a></li>
+          </ul>
+        </div>
+    </nav>
+    <center>
+        <h2>Participant Records</h2>
+        <form method="POST" action="/Sort">
+            {% csrf_token %}
+            <label for="Sort"></label>
+                <select name="Sort">
+                    <option value="part_id">Participant ID</option>
+                    <option value="first_name">Participant First Name</option>
+                    <option value="last_name">Participant Last Name</option>
+                    <option value="dob">DOB</option>
+                    <option value="college">College Name</option>
+                    <option value="cpi">CPI</option>
+                </select>
+                <button type="submit" class="btn btn-info" value="Sort" style="margin-bottom: 3px;">Sort</button>
+                <!-- <input type="submit" value="Sort"/> -->
+        </form>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar container">
+            <table border="1" class="table table-bordered table-striped mb-0 table-hover">
+                <tr>
+                    <th>part_id</th>
+                    <th>first_name</th>
+                    <th>last_name</th>
+                    <th>email_add</th>
+                    <th>dob</th>
+                    <th>student</th>
+                    <th>college</th>
+                    <th>cpi</th>
+                </tr>
+                {% for result in data %}
+                <tr>
+                    <td>{{result.part_id}}</td>
+                    <td>{{result.first_name}}</td>
+                    <td>{{result.last_name}}</td>
+                    <td>{{result.email_add}}</td>
+                    <td>{{result.dob}}</td>
+                    <td>{{result.student}}</td>
+                    <td>{{result.college}}</td>
+                    <td>{{result.cpi}}</td>
+                    <td><a style="text-decoration: none" href="Edit/{{result.part_id}}">Edit</a></td>
+                    <td><a style="text-decoration: none" href="Delete/{{result.part_id}}" onclick="return confirm('Are you sure you want to delete the record ?')">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <a href="{% url 'Insertpart' %}" class="btn btn-info" role="button">Add Participant</a>
+        </div>
+    </center>
+</body>
+</html>

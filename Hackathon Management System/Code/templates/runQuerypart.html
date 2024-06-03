@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <title> Hackathon Management System </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'HomePage' %}">Hackathon Management System</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'HomePage' %}">Home</a></li>
+            <li><a href="{% url 'showpart' %}">Participant Database</a></li>
+            <li class="active"><a href="{% url 'runQuerypart' %}">Query Output</a></li>
+            <li><a href="{% url 'showhack' %}">Hackathon Database</a></li>
+          </ul>
+        </div>
+    </nav>
+
+    <center>
+        <h1 style="color:white;"> Show Participant Records </h1>
+    </hr>
+</hr>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar container">
+        
+        <table border="1" class="table table-bordered table-striped mb-0 table-hover">
+            <tr>
+                <th> part_id </th>
+                <th> first_name </th>
+                <th> last_name </th>
+                <th> email_add </th>
+                <th> dob </th>
+                <th> student </th>
+                <th> college </th> 
+                <th> cpi </th> 
+            </tr>
+            {% for result in data %}
+            <tr>
+                <td> {{result.0}}</td>
+                <td> {{result.1}} </td>
+                <td> {{result.2}} </td>
+                <td> {{result.3}} </td>
+                <td> {{result.4}} </td>
+                <td> {{result.5}} </td>
+                <td> {{result.6}} </td>
+                <td> {{result.7}} </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    </center>
+</body>
+</html>
